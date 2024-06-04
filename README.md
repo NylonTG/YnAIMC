@@ -19,13 +19,13 @@ Tkinter \
 2. Follow the prompts to select an input image, specify the map dimensions, and choose an output directory
 3. Wait for the files to save
 4. Open YnABMC \
-   ![YnABMC on Startup](https://raw.githubusercontent.com/NylonTG/CivMapImagePrep/NylonTG-add--images/images/ynabmcstartup.png)
+   ![YnABMC on Startup](https://raw.githubusercontent.com/NylonTG/CivMapImagePrep/main/assets/ynabmcstartup.png)
 6. Enter your Map's title in the "Project Name" box
 7. Enter your username in the Author box
 8. Press "Generate Mod ID"
 9. Press "Select Source File" and navigate to where the "IMPORT_INTO_YnABMC.bmp" was saved
 10. Uncheck the following options as shown below \
-    ![YnABMC open with all the "Import" checkboxes unchecked, Map Supports True Start Location and Real City Naming unchecked, and "Map Generator" next to "Natural Wonders" unchecked](https://raw.githubusercontent.com/NylonTG/CivMapImagePrep/NylonTG-add--images/images/ynabmcsample.png)
+    ![YnABMC open with all the "Import" checkboxes unchecked, Map Supports True Start Location and Real City Naming unchecked, and "Map Generator" next to "Natural Wonders" unchecked](https://raw.githubusercontent.com/NylonTG/CivMapImagePrep/main/assets/ynabmcsample.png)
 11. Press "Generate Map"
 12. A folder will be made in the same folder as the .bmp file
 13. Copy the folder and paste it in "C:\Users\%userprofile%\Documents\My Games\Sid Meier's Civilization VI\Mods"

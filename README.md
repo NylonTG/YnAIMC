@@ -5,6 +5,7 @@ CivMapImagePrep is a Python program designed to transform an input image into a 
 ## Requirements
 Python 3.x \
 PIL (Pillow) \
+Tkinter \
 [Sid Meier's Civilization VI](https://store.steampowered.com/app/289070/Sid_Meiers_Civilization_VI/) \
 [Yet (not) Another Maps Pack](https://github.com/seelingcat/Civ6-YnAMP) \
 [YnABMC (Yet *not* Another Bit Map Converter)](https://github.com/Zobtzler/YnABMC)

@@ -1,6 +1,6 @@
-# CivMapImagePrep
+# Yet not Another Image-to-Civ6 Map Converter (YnAIMC)
 ### ***Turn images into Civ VI maps***
-CivMapImagePrep is a Python program designed to transform an input image into a format readable by "Yet not Another Bit-Map Converter" (YnABMC), which is used to create maps for Sid Meier's Civilization VI. This program resizes the image, adjusts the colors to match a predefined set, and formats it appropriately for import into YnABMC.
+YnAIMC is a Python program designed to transform an input image into a format readable by "Yet not Another Bit-Map Converter" (YnABMC), which is used to create maps for Sid Meier's Civilization VI. This program resizes the image, adjusts the colors to match a predefined set, and formats it appropriately for import into YnABMC.
 
 ## Requirements
 Python 3.x \

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<!-- You have to fill this in manually -->
+	<LocalizedText>
+		<!--<Replace Tag="LOC_CITY_NAME_[Author]_[Title]_Map_SOME_CITY_NAME" Text="Some City Name" Language="en_US" />-->
+	</LocalizedText>
+</GameData>

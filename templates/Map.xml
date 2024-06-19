@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<!-- True Start Locations. You have to fill this in manually -->
+	<StartPosition>
+		<!--<Replace MapName="[Author]_[Title]_Map" Civilization ="CIVILIZATION_AMERICA"	X="0" Y="0" />-->
+	</StartPosition>
+
+	<!-- Real City Naming. You have to fill this in manually -->
+	<!--
+		* CityLocaleName must have a matching entry in MapText.xml
+		* Area is by default 1 (i.e. a radius of 1, i.e. one center tile and six surrounding tiles.
+		  A radius of 2 adds yet another 12 surrounding tiles. A radius of 0 is only 1 tile)
+		* Civilization should only have a value if a name applies to only one civ. I.e. a tile can
+		  have multiple entries for different civs, such as "London" as a standard value for London,
+		  but "Londres" for France or "Londinium" for Rome
+	-->
+	<CityMap>
+		<!--<Replace MapName="[Author]_[Title]_Map" X="0" Y="0" CityLocaleName="LOC_CITY_NAME_[Author]_[Title]_Map_SOME_CITY_NAME" Area="1" Civilization="CIVILIZATION_AMERICA"/>-->
+	</CityMap>
+</GameData>

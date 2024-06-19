@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<LocalizedText>
+		<Replace Tag="LOC_[Author]_[Title]_Map_NAME" Language="en_US">
+			<Text>[Title]</Text>
+		</Replace>
+		<Replace Tag="LOC_[Author]_[Title]_Map_DESC" Language="en_US"
+>			<Text>[Title] ([Length]x[Height]) by [Author]</Text>
+		</Replace>
+	</LocalizedText>
+</GameData>

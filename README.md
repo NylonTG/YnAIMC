@@ -7,8 +7,7 @@ Python 3.x \
 PIL (Pillow) \
 Tkinter \
 [Sid Meier's Civilization VI](https://store.steampowered.com/app/289070/Sid_Meiers_Civilization_VI/) \
-[Yet (not) Another Maps Pack](https://github.com/seelingcat/Civ6-YnAMP) \
-[YnABMC (Yet *not* Another Bit Map Converter)](https://github.com/Zobtzler/YnABMC)
+[Yet (not) Another Maps Pack](https://github.com/seelingcat/Civ6-YnAMP)
 
 ## Installation
 1. Ensure you have Python 3.x installed on your system.
@@ -16,17 +15,14 @@ Tkinter \
 
 ## Usage
 1. Run the "image_processor.py"
-2. Follow the prompts to select an input image, specify the map dimensions, and choose an output directory
-3. Wait for the files to save
-4. Open YnABMC \
-   ![YnABMC on Startup](https://raw.githubusercontent.com/NylonTG/CivMapImagePrep/main/assets/ynabmcstartup.png)
-6. Enter your Map's title in the "Project Name" box
-7. Enter your username in the Author box
-8. Press "Generate Mod ID"
-9. Press "Select Source File" and navigate to where the "IMPORT_INTO_YnABMC.bmp" was saved
-10. Uncheck the following options as shown below \
-    ![YnABMC open with all the "Import" checkboxes unchecked, Map Supports True Start Location and Real City Naming unchecked, and "Map Generator" next to "Natural Wonders" unchecked](https://raw.githubusercontent.com/NylonTG/CivMapImagePrep/main/assets/ynabmcsample.png)
-11. Press "Generate Map"
-12. A folder will be made in the same folder as the .bmp file
-13. Copy the folder and paste it in "C:\Users\%userprofile%\Documents\My Games\Sid Meier's Civilization VI\Mods"
-14. Start the game and enable the mod
+2. Select the image you want to turn into a map
+3. Enter the length and height that you want your map to be
+4. Select the directory you want the files to be saved in
+5. Give your map a name and enter your username
+6. Wait for the files to save
+9. A folder will be made where you selected the output directory
+10. Copy the folder and paste it in "C:\Users\%userprofile%\Documents\My Games\Sid Meier's Civilization VI\Mods"
+11. Start the game and enable the mod
+12. Enjoy!
+
+**Special thanks to Zobtzler and his program, [YnABMC (Yet *not* Another Bit Map Converter)](https://github.com/Zobtzler/YnABMC)**

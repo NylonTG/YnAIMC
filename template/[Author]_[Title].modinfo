@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mod id="[MODID]" version = "1">
+	<Properties>
+		<Name>[Author] - [Title]</Name>
+		<Description>This map has been created by [Author] using the "Yet (not) Another Bit Map Converter" Civ 6 Map Maker</Description>
+		<Teaser>This map has been created by [Author] using the "Yet (not) Another Bit Map Converter" Civ 6 Map Maker</Teaser>
+		<Authors>[Author]</Authors>
+	<CompatibleVersions>1.2,2.0</CompatibleVersions>
+	</Properties>
+	<Dependencies>
+		<Mod id="36e88483-48fe-4545-b85f-bafc50dde315" title="Yet (not) Another Maps Pack"/>
+	</Dependencies>
+	<FrontEndActions>
+		<UpdateDatabase id="[Author]_[Title]_SETTING">
+			<File>Config/Config.xml</File>
+		</UpdateDatabase>
+		<UpdateText id="NewAction">
+			<File>Config/Config_Text.xml</File>
+		</UpdateText>
+	</FrontEndActions>
+	<InGameActions>
+		<ImportFiles id="[Author]_[Title]_IMPORT">
+			<File>Lua/[Author]_[Title]_Map.lua</File>
+		</ImportFiles>
+		<UpdateDatabase id="NewAction">
+			<File>Map/Map.xml</File>
+			<File>Map/NaturalWonders.xml</File>
+			<File>Map/ExtraPlacement.xml</File>
+		</UpdateDatabase>
+		<UpdateText id="YNAMP_DEFAULT_LOC">
+			<File>Map/MapText.xml</File>
+		</UpdateText>
+	</InGameActions>
+	<Files>
+		<File>Config/Config.xml</File>
+		<File>Config/Config_Text.xml</File>
+		<File>Map/Map.xml</File>
+		<File>Map/MapText.xml</File>
+		<File>Map/NaturalWonders.xml</File>
+		<File>Map/ExtraPlacement.xml</File>
+		<File>Lua/[Author]_[Title]_Map.lua</File>
+	</Files>
+</Mod>

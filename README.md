@@ -14,12 +14,14 @@ Tkinter \
 2. Install the required libraries using pip:
 
 ## Usage
-1. Run the "image_processor.py"
-2. Select the image you want to turn into a map
-3. Enter the length and height that you want your map to be
-4. Select the directory you want the files to be saved in
-5. Give your map a name and enter your username
-6. Wait for the files to save
+1. Download the [latest release](https://github.com/NylonTG/YnAIMC/releases/tag/v0.2.0-alpha)
+2. Extract YnAIMC.zip
+3. Run "image_processor.py"
+4. Select the image you want to turn into a map
+5. Enter the length and height that you want your map to be
+6. Select the directory you want the files to be saved in
+7. Give your map a name and enter your username
+8. Wait for the files to save
 9. A folder will be made where you selected the output directory
 10. Copy the folder and paste it in "C:\Users\%userprofile%\Documents\My Games\Sid Meier's Civilization VI\Mods"
 11. Start the game and enable the mod

@@ -6,6 +6,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 from PIL import Image, ImageDraw
 import math
+import statistics
 
 # Constants
 RGB_LIST = [
@@ -22,6 +23,16 @@ TERRAIN_DICT = {
     (255, 255, 255): "SNOW",
     (0, 160, 192): "COAST",
     (64, 64, 192): "OCEAN"
+}
+
+terrain_counts = {
+    "GRASS": 0,
+    "PLAINS": 0,
+    "DESERT": 0,
+    "TUNDRA": 0,
+    "SNOW": 0,
+    "COAST": 0,
+    "OCEAN": 0
 }
 
 # Utility functions
@@ -96,7 +107,9 @@ def generate_mod_id(length=32):
 def get_pix(x, y, image):
     """Get the terrain type based on the pixel's RGB value."""
     rgb = image.getpixel((x, y))
-    return TERRAIN_DICT.get(rgb, "UNKNOWN")
+    terrain = TERRAIN_DICT.get(rgb, "UNKNOWN")
+    terrain_counts[terrain] += 1
+    return terrain
 
 def replace_words(input_file, output_file, replacements, image, height, length):
     """Create files"""
@@ -163,6 +176,31 @@ def make_files(output_dir, color_corrected_map_path):
     for input_file, output_file in file_list.items():
         replace_words(input_file, output_file, replacements, image, height, length)
 
+def get_percentages(terrain_counts, map_length, map_height):
+    image_size = map_length*map_height
+    terrain_percentages = {
+        "GRASS": (terrain_counts["GRASS"]/image_size)*100,
+        "PLAINS": (terrain_counts["PLAINS"]/image_size)*100,
+        "DESERT": (terrain_counts["DESERT"]/image_size)*100,
+        "TUNDRA": (terrain_counts["TUNDRA"]/image_size)*100,
+        "SNOW": (terrain_counts["SNOW"]/image_size)*100,
+        "COAST": (terrain_counts["COAST"]/image_size)*100,
+        "OCEAN": (terrain_counts["OCEAN"]/image_size)*100
+    }
+    return terrain_percentages
+
+def grade_map(terrain_percentages):
+    savanna_percentages = abs(terrain_percentages["GRASS"] + terrain_percentages["PLAINS"] - 20)
+    marine_percentages = abs(terrain_percentages["COAST"] + terrain_percentages["OCEAN"] - 70)
+    wilderness_percentages = abs(
+        terrain_percentages["DESERT"] + terrain_percentages["TUNDRA"] + terrain_percentages["SNOW"] - 10)
+
+    with open('log.txt', "w") as log:
+        log.write(f"SAVANNA: {savanna_percentages}\n")
+        log.write(f"MARINE: {marine_percentages}\n")
+        log.write(f"WILDERNESS: {wilderness_percentages}\n")
+        total_score = 100 - statistics.mean([savanna_percentages, marine_percentages, wilderness_percentages])
+        log.write(f"\nTOTAL SCORE: {total_score}\n")
 
 def main():
     """Main function to do everything."""
@@ -190,7 +228,11 @@ def main():
     color_corrected_map_path = process_image(image_path, map_length, map_height, output_dir)
     make_files(output_dir, color_corrected_map_path)
 
+    terrain_percentages = get_percentages(terrain_counts, map_length, map_height)
+    grade_map(terrain_percentages)
+
     messagebox.showinfo("Process Completed", "Image processing completed. The files have been saved.")
+    print(terrain_counts, map_length, map_height)
 
 if __name__ == "__main__":
     main()

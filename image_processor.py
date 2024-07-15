@@ -190,17 +190,32 @@ def get_percentages(terrain_counts, map_length, map_height):
     return terrain_percentages
 
 def grade_map(terrain_percentages):
-    savanna_percentages = abs(terrain_percentages["GRASS"] + terrain_percentages["PLAINS"] - 20)
-    marine_percentages = abs(terrain_percentages["COAST"] + terrain_percentages["OCEAN"] - 70)
-    wilderness_percentages = abs(
-        terrain_percentages["DESERT"] + terrain_percentages["TUNDRA"] + terrain_percentages["SNOW"] - 10)
+    grass_plains = terrain_percentages["GRASS"] + terrain_percentages["PLAINS"]
+    coast_ocean = terrain_percentages["COAST"] + terrain_percentages["OCEAN"]
+    desert_tundra_snow = terrain_percentages["DESERT"] + terrain_percentages["TUNDRA"] + terrain_percentages["SNOW"]
+
+    grass_plains_target = 20
+    coast_ocean_target = 70
+    desert_tundra_snow_target = 10
+
+    grass_plains_diff = abs(grass_plains - grass_plains_target)
+    coast_ocean_diff = abs(coast_ocean - coast_ocean_target)
+    desert_tundra_snow_diff = abs(desert_tundra_snow - desert_tundra_snow_target)
+
+    max_diff = 100
+    grass_plains_score = max(0, (max_diff - grass_plains_diff))
+    coast_ocean_score = max(0, (max_diff - coast_ocean_diff))
+    desert_tundra_snow_score = max(0, (max_diff - desert_tundra_snow_diff))
+
+    total_score = grass_plains_score + coast_ocean_score + desert_tundra_snow_score
+    normalized_score = total_score / 3
+
 
     with open('log.txt', "w") as log:
-        log.write(f"SAVANNA: {savanna_percentages}\n")
-        log.write(f"MARINE: {marine_percentages}\n")
-        log.write(f"WILDERNESS: {wilderness_percentages}\n")
-        total_score = 100 - statistics.mean([savanna_percentages, marine_percentages, wilderness_percentages])
-        log.write(f"\nTOTAL SCORE: {total_score}\n")
+        log.write(f"SAVANNA: {grass_plains_diff}\n")
+        log.write(f"MARINE: {coast_ocean_diff}\n")
+        log.write(f"WILDERNESS: {desert_tundra_snow_diff}\n")
+        log.write(f"\nTOTAL SCORE: {normalized_score}\n")
 
 def main():
     """Main function to do everything."""

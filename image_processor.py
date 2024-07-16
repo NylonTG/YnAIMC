@@ -35,6 +35,7 @@ terrain_counts = {
     "OCEAN": 0
 }
 
+
 # Utility functions
 def get_user_input(prompt, input_type=int, min_value=1):
     """Prompt the user for input."""
@@ -48,13 +49,16 @@ def get_user_input(prompt, input_type=int, min_value=1):
         except ValueError:
             messagebox.showerror("Invalid Input", f"Invalid input. Please enter a valid {input_type.__name__}.")
 
+
 def calculate_distance(rgb1, rgb2):
     """Calculate the distance between two RGB values."""
     return math.sqrt(sum((c1 - c2) ** 2 for c1, c2 in zip(rgb1, rgb2)))
 
+
 def is_even(value):
     """Do I need to explain..."""
     return 5 if (value % 2) else 8
+
 
 def different_color_check(x, y, color_corrected_map, map_length, map_height):
     """Check if a pixel is a different color from its neighbors."""
@@ -73,6 +77,7 @@ def different_color_check(x, y, color_corrected_map, map_length, map_height):
                 if neighbor_color != current_color and neighbor_color != (0, 160, 192):
                     return True
     return False
+
 
 def process_image(image_path, map_length, map_height, output_dir):
     """Process the image and create the color-corrected map."""
@@ -98,11 +103,13 @@ def process_image(image_path, map_length, map_height, output_dir):
 
     return color_corrected_map_path
 
+
 def generate_mod_id(length=32):
     """Generate a random mod ID."""
     characters = string.ascii_lowercase + string.digits
     random_id = ''.join(random.choices(characters, k=length))
     return f"{random_id[:8]}-{random_id[8:12]}-{random_id[12:16]}-{random_id[16:20]}-{random_id[20:]}"
+
 
 def get_pix(x, y, image):
     """Get the terrain type based on the pixel's RGB value."""
@@ -110,6 +117,7 @@ def get_pix(x, y, image):
     terrain = TERRAIN_DICT.get(rgb, "UNKNOWN")
     terrain_counts[terrain] += 1
     return terrain
+
 
 def replace_words(input_file, output_file, replacements, image, height, length):
     """Create files"""
@@ -129,7 +137,7 @@ def replace_words(input_file, output_file, replacements, image, height, length):
             with open(output_file, 'a') as file:
                 for x in range(length):
                     for y in range(height):
-                        terrain = get_pix(x, (height-1)-y, image)
+                        terrain = get_pix(x, (height - 1) - y, image)
                         file.write(
                             f'\nMapToConvert[{x}][{y}]={{"TERRAIN_{terrain}",-1,"CONTINENT_ZEALANDIA",{{{{0,-1}},{{0,-1}},{{0,-1}}}},{{-1,1}},{{0,0,0}},-1}}')
                 file.write("\n\n\treturn MapToConvert\nend\n\n")
@@ -137,12 +145,14 @@ def replace_words(input_file, output_file, replacements, image, height, length):
     except IOError as e:
         print(f"Error processing file {input_file}: {e}")
 
+
 def create_output_folders(output_dir, author, title):
     """Create folders."""
     folders = [os.path.join(output_dir, f"{author}_{title}/{sub_folder}") for sub_folder in ['Config', 'Lua', 'Map']]
     for folder in folders:
         os.makedirs(folder, exist_ok=True)
     return folders
+
 
 def make_files(output_dir, color_corrected_map_path):
     """Generate and save the output files."""
@@ -153,7 +163,8 @@ def make_files(output_dir, color_corrected_map_path):
         exit(1)
 
     title = simpledialog.askstring("Map Name", "Give your map a name:")
-    author = simpledialog.askstring("Author Name", "Enter your username or the name you want to be attributed to your map:")
+    author = simpledialog.askstring("Author Name",
+                                    "Enter your username or the name you want to be attributed to your map:")
     length, height = image.size
 
     mod_id = generate_mod_id()
@@ -162,7 +173,8 @@ def make_files(output_dir, color_corrected_map_path):
 
     file_list = {
         'template/[Author]_[Title].modinfo': os.path.join(output_dir, f"{author}_{title}", f"{author}_{title}.modinfo"),
-        'template/[Author]_[Title]_Map.lua': os.path.join(output_dir, f"{author}_{title}/Lua", f"{author}_{title}_Map.lua"),
+        'template/[Author]_[Title]_Map.lua': os.path.join(output_dir, f"{author}_{title}/Lua",
+                                                          f"{author}_{title}_Map.lua"),
         'template/Config_Text.xml': os.path.join(output_dir, f"{author}_{title}/Config", "Config_Text.xml"),
         'template/Config.xml': os.path.join(output_dir, f"{author}_{title}/Config", "Config.xml"),
         'template/Map.xml': os.path.join(output_dir, f"{author}_{title}/Map", "Map.xml"),
@@ -171,36 +183,60 @@ def make_files(output_dir, color_corrected_map_path):
         'template/NaturalWonders.xml': os.path.join(output_dir, f"{author}_{title}/Map", "NaturalWonders.xml")
     }
 
-    replacements = {'[MODID]': mod_id, '[Author]': author, '[Title]': title, '[Length]': str(length), '[Height]': str(height)}
+    replacements = {'[MODID]': mod_id, '[Author]': author, '[Title]': title, '[Length]': str(length),
+                    '[Height]': str(height)}
 
     for input_file, output_file in file_list.items():
         replace_words(input_file, output_file, replacements, image, height, length)
 
+
 def get_percentages(terrain_counts, map_length, map_height):
-    image_size = map_length*map_height
+    image_size = map_length * map_height
     terrain_percentages = {
-        "GRASS": (terrain_counts["GRASS"]/image_size)*100,
-        "PLAINS": (terrain_counts["PLAINS"]/image_size)*100,
-        "DESERT": (terrain_counts["DESERT"]/image_size)*100,
-        "TUNDRA": (terrain_counts["TUNDRA"]/image_size)*100,
-        "SNOW": (terrain_counts["SNOW"]/image_size)*100,
-        "COAST": (terrain_counts["COAST"]/image_size)*100,
-        "OCEAN": (terrain_counts["OCEAN"]/image_size)*100
+        "GRASS": (terrain_counts["GRASS"] / image_size) * 100,
+        "PLAINS": (terrain_counts["PLAINS"] / image_size) * 100,
+        "DESERT": (terrain_counts["DESERT"] / image_size) * 100,
+        "TUNDRA": (terrain_counts["TUNDRA"] / image_size) * 100,
+        "SNOW": (terrain_counts["SNOW"] / image_size) * 100,
+        "COAST": (terrain_counts["COAST"] / image_size) * 100,
+        "OCEAN": (terrain_counts["OCEAN"] / image_size) * 100
     }
     return terrain_percentages
 
-def grade_map(terrain_percentages):
-    savanna_percentages = abs(terrain_percentages["GRASS"] + terrain_percentages["PLAINS"] - 20)
-    marine_percentages = abs(terrain_percentages["COAST"] + terrain_percentages["OCEAN"] - 70)
-    wilderness_percentages = abs(
-        terrain_percentages["DESERT"] + terrain_percentages["TUNDRA"] + terrain_percentages["SNOW"] - 10)
 
-    with open('log.txt', "w") as log:
-        log.write(f"SAVANNA: {savanna_percentages}\n")
-        log.write(f"MARINE: {marine_percentages}\n")
-        log.write(f"WILDERNESS: {wilderness_percentages}\n")
-        total_score = 100 - statistics.mean([savanna_percentages, marine_percentages, wilderness_percentages])
-        log.write(f"\nTOTAL SCORE: {total_score}\n")
+def calculate_difference(value, min_value, max_value):
+    if value < min_value:
+        return min_value - value
+    elif value > max_value:
+        return value - max_value
+    return 0
+
+
+def grade_map(terrain_percentages):
+    try:
+        grass_plains = terrain_percentages.get("GRASS", 0) + terrain_percentages.get("PLAINS", 0)
+        coast_ocean = terrain_percentages.get("COAST", 0) + terrain_percentages.get("OCEAN", 0)
+        desert_tundra_snow = terrain_percentages.get("DESERT", 0) + terrain_percentages.get("TUNDRA",
+                                                                                            0) + terrain_percentages.get(
+            "SNOW", 0)
+
+        grass_plains_dif = calculate_difference(grass_plains, 12, 51)
+        coast_ocean_dif = calculate_difference(coast_ocean, 29, 84)
+        desert_tundra_snow_dif = calculate_difference(desert_tundra_snow, 3, 20)
+
+        normalized_score = 100 - grass_plains_dif - coast_ocean_dif - desert_tundra_snow_dif
+
+        with open('log.txt', "w") as log:
+            log.write(f"SAVANNA: {grass_plains_dif}\n")
+            log.write(f"MARINE: {coast_ocean_dif}\n")
+            log.write(f"WILDERNESS: {desert_tundra_snow_dif}\n")
+            log.write(f"\nMAP SCORE: {normalized_score}\n")
+
+    except KeyError as e:
+        print(f"Missing key in terrain_percentages: {e}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 
 def main():
     """Main function to do everything."""
@@ -233,6 +269,7 @@ def main():
 
     messagebox.showinfo("Process Completed", "Image processing completed. The files have been saved.")
     print(terrain_counts, map_length, map_height)
+
 
 if __name__ == "__main__":
     main()

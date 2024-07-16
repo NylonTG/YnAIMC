@@ -14,7 +14,7 @@ Tkinter \
 2. Install the required libraries using pip:
 
 ## Usage
-1. Download the [latest release](https://github.com/NylonTG/YnAIMC/releases/tag/v0.2.0-alpha)
+1. Download the [latest release](https://github.com/NylonTG/YnAIMC/releases/)
 2. Extract YnAIMC.zip
 3. Run "image_processor.py"
 4. Select the image you want to turn into a map

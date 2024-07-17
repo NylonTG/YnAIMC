@@ -106,7 +106,7 @@ def process_image(image_path, map_length, map_height, output_dir):
 
 def generate_mod_id(length=32):
     """Generate a random mod ID."""
-    characters = string.ascii_lowercase + string.digits
+    characters = 'abcdef0123456789'
     random_id = ''.join(random.choices(characters, k=length))
     return f"{random_id[:8]}-{random_id[8:12]}-{random_id[12:16]}-{random_id[16:20]}-{random_id[20:]}"
 
